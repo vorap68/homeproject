@@ -24,10 +24,10 @@ class Category extends Model
     /**
      * Возвращает коллекцию товаров текущей категоии
      */
-    // public function products()
-    // {
-    //     return $this->hasMany(Product::class);
-    // }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 
     /**
      * Возвращает название категории-родителя  для текущей категории

@@ -19,4 +19,4 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('i
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/category/{category}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('category');
+Route::get('/category/{category}', [App\Http\Controllers\Web\CategoryController::class, 'getCategory'])->name('category');
