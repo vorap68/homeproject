@@ -32,6 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">Main</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products') }}">Все товары</a>
+                        </li>
 
                         {{-- // Переменная $categories_parent приходит с ViewServiceProviider                       --}}
                         @foreach ($categories_parent as $category)

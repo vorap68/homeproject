@@ -20,3 +20,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/category/{category}', [App\Http\Controllers\Web\CategoryController::class, 'getCategory'])->name('category');
+Route::get('/products', [App\Http\Controllers\Web\ProductController::class, 'productAll'])->name('products');
+Route::get('/product/{product}', [App\Http\Controllers\Web\ProductController::class, 'productSingle'])->name('product');
+Route::post('/products', [App\Http\Controllers\Web\ProductController::class, 'productSearch'])->name('products.search');

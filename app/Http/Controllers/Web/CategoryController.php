@@ -14,6 +14,7 @@ class CategoryController extends Controller
     public function getCategory(Category $category)
     {
         $products = $category->products;
-        dd($products);
+        $categories = Category::all();
+        return view('product.all', compact('products', 'categories'));
     }
 }

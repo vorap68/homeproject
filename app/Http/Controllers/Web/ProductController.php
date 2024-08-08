@@ -3,22 +3,24 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
 
     /**
-     * Возвращает модель продукта и коллекцию его свойств
+     * Возвращает модель продукта и модель его свойств
      *
      */
     public function productSingle(Product $product)
     {
-        $properties = $product->properties;
-        // return view('product.single', ([
-        //     'product' => $product,
-        //     'properties' => $properties,
-        // ]));
+        $property = $product->property;
+        return view('product.single', ([
+            'product' => $product,
+            'property' => $property,
+        ]));
     }
 
     /**
@@ -28,7 +30,21 @@ class ProductController extends Controller
     public function productAll()
     {
         $products = Product::all();
-        //return view('product.all',compact('products'));
+        $categories = Category::all();
+        return view('product.all', compact('products', 'categories'));
+    }
+
+    /**
+     * Возвращает коллекцию  продуктов c учетом критериев выбора
+     * @var @categoryArray array массив выбранных категорий или [1] если категории не выбрали
+     */
+    public function productSearch(Request $request)
+    {
+        $categoryArray = (!isset($request->categories) ? [1] : $request->categories);
+        $productSelected = Product::whereIn('category_id', $categoryArray)->
+            whereBetween('price', [$request->price_from, $request->price_to])->get();
+        return view('product.selected', compact('productSelected'));
+
     }
 
 }

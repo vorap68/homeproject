@@ -24,9 +24,9 @@ class Product extends Model
 /**
  * Возвращает коллекцию свойств для текущего продукта
  */
-    public function properties()
+    public function property()
     {
-        return $this->hasMany(Property::class);
+        return $this->hasOne(Property::class);
     }
 
 }
