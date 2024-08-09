@@ -33,6 +33,9 @@
                             <a class="nav-link" href="{{ route('index') }}">Main</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('session.clear') }}">Обнуление сессии</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('products') }}">Все товары</a>
                         </li>
 

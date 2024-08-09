@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+/**
+ * обнуление сессии
+ */
+Route::get('session/clear', function () {
+    //session()->flush();
+    session()->forget('order_id');
+    return redirect()->route('index');
+})->name('session.clear');
+
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
 Auth::routes();
@@ -23,3 +32,10 @@ Route::get('/category/{category}', [App\Http\Controllers\Web\CategoryController:
 Route::get('/products', [App\Http\Controllers\Web\ProductController::class, 'productAll'])->name('products');
 Route::get('/product/{product}', [App\Http\Controllers\Web\ProductController::class, 'productSingle'])->name('product');
 Route::post('/products', [App\Http\Controllers\Web\ProductController::class, 'productSearch'])->name('products.search');
+
+/**
+ * Маршруты для корзины-заказа
+ */
+Route::get('basket/add/{product}', [App\Http\Controllers\Web\BasketController::class, 'add'])->name('basket.add');
+
+Route::get('basket/minus/{product}', [App\Http\Controllers\Web\BasketController::class, 'minus'])->name('basket.minus');

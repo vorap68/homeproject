@@ -20,7 +20,7 @@
                     {{ $product->property->state }}</p>
                 <p class="card-text">Описание: <span class="border border-2">
                         {{ $product->description }}</span></p>
-                <a href="#" class="btn btn-primary">Заказать</a>
+                <a href="{{ route('basket.add', $product) }}" class="btn btn-primary">Заказать</a>
             </div>
         </div>
 

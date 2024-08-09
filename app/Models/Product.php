@@ -29,4 +29,12 @@ class Product extends Model
         return $this->hasOne(Property::class);
     }
 
+    /**
+     *  Связь с заказами заказа через промежут таблицу
+     */
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
 }
