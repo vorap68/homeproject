@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'HOME_PROJECT') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -61,6 +61,11 @@
                         @endforeach
 
                     </ul>
+
+                    <li style="list-style-type: none;">
+                        <a class="nav-link" href="{{ route('basket.show') }}"> Корзина</a>
+                    </li>
+                    <p></p>
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -100,13 +105,15 @@
                 </div>
             </div>
         </nav>
+        @if (session()->has('success'))
+            <p class="alert alert-success">{{ session()->get('success') }}</p>
+        @endif
+        @if (session()->has('warning'))
+            <p class="alert alert-warning">{{ session()->get('warning') }}</p>
+        @endif
+        @yield('content')
     </div>
-    @if (session()->has('success'))
-        <p>{{ session('success') }}</p>
-    @elseif (session()->has('warning'))
-        <p>{{ session('warning') }}</p>
-    @endif
-    @yield('content')
+
 </body>
 
 </html>

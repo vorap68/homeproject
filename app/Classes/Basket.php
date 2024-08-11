@@ -70,7 +70,7 @@ class Basket
             } else {
                 $this->order->products()->detach($product->id);
             }
-            return redirect()->route('index');
+            return redirect()->back();
         }
     }
 
