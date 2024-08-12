@@ -66,6 +66,15 @@
                         <a class="nav-link" href="{{ route('basket.show') }}"> Корзина</a>
                     </li>
                     <p></p>
+                    @if (Auth::check())
+                        @if (Auth::user()->role === 'admin')
+                            <li style="list-style-type: none;" class="mx-5">
+                                <a class="nav-link" href="{{ url('admin/main') }}"> АдминПанель</a>
+                            </li>
+                        @endif
+                    @endif
+
+                    <p></p>
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest

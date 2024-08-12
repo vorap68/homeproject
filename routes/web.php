@@ -36,13 +36,22 @@ Route::post('/products', [App\Http\Controllers\Web\ProductController::class, 'pr
 /**
  * Маршруты для корзины-заказа
  */
-Route::get('basket/add/{product}', [App\Http\Controllers\Web\BasketController::class, 'add'])->name('basket.add');
+Route::get('/basket/add/{product}', [App\Http\Controllers\Web\BasketController::class, 'add'])->name('basket.add');
 Route::middleware('is_basket_empty_web')->group(function () {
-    Route::get('basket/show', [App\Http\Controllers\Web\BasketController::class, 'showBasket'])->name('basket.show');
-    Route::get('basket/minus/{product}', [App\Http\Controllers\Web\BasketController::class, 'minus'])->name('basket.minus');
+    Route::get('/basket/show', [App\Http\Controllers\Web\BasketController::class, 'showBasket'])->name('basket.show');
+    Route::get('/basket/minus/{product}', [App\Http\Controllers\Web\BasketController::class, 'minus'])->name('basket.minus');
     Route::get('/basket/remove/{product}', [App\Http\Controllers\Web\BasketController::class, 'remove'])->name('basket.remove');
+    Route::get('/order/place/{order}', [App\Http\Controllers\Web\OrderController::class, 'place'])->name('order.place');
+    Route::post('/order/confirm/{order}', [App\Http\Controllers\Web\OrderController::class, 'confirm'])->name('order.confirm');
 
-    Route::get('order/place/{order}', [App\Http\Controllers\Web\OrderController::class, 'place'])->name('order.place');
-    Route::post('order/confirm/{order}', [App\Http\Controllers\Web\OrderController::class, 'confirm'])->name('order.confirm');
+});
+
+/**
+ * Маршруты для Админ Панели
+ */
+Route::prefix('/admin')->middleware('auth', 'is_admin')->group(function () {
+    Route::get('/main', function () {
+        return view('admin.main');
+    });
 
 });
