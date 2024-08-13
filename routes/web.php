@@ -49,9 +49,11 @@ Route::middleware('is_basket_empty_web')->group(function () {
 /**
  * Маршруты для Админ Панели
  */
-Route::prefix('/admin')->middleware('auth', 'is_admin')->group(function () {
+Route::name('admin.')->prefix('/admin')->middleware('auth', 'is_admin')->group(function () {
     Route::get('/main', function () {
         return view('admin.main');
     });
+    Route::resource('/category', App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('/product', App\Http\Controllers\Admin\ProductController::class);
 
 });

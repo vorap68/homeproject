@@ -120,7 +120,11 @@
         @if (session()->has('warning'))
             <p class="alert alert-warning">{{ session()->get('warning') }}</p>
         @endif
-        @yield('content')
+        <div class=”row”>
+            <div class=”col-12”>
+                @yield('content')
+            </div>
+        </div>
     </div>
 
 </body>

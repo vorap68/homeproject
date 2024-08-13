@@ -29,9 +29,8 @@ class ProductController extends Controller
      */
     public function productAll()
     {
-        $products = Product::all();
-        $categories = Category::all();
-        return view('product.all', compact('products', 'categories'));
+        $products = Product::paginate(10);
+        return view('product.all', compact('products'));
     }
 
     /**

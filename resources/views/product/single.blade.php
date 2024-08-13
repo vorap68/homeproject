@@ -9,6 +9,7 @@
             <div class="card-body">
                 <h5 class="card-title">Название:{{ $product->name }}</h5>
                 <h5 class="card-title">Категория: {{ $product->category->name }}</h5>
+                <h5 class="card-title">Цена: {{ $product->price }}</h5>
 
                 <p class="card-text border border-secondary ">Цвет:
                     {{ $product->property->color }}

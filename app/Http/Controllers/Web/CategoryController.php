@@ -13,8 +13,7 @@ class CategoryController extends Controller
      */
     public function getCategory(Category $category)
     {
-        $products = $category->products;
-        $categories = Category::all();
-        return view('product.all', compact('products', 'categories'));
+        $products = $category->products()->paginate(10);
+        return view('product.all', compact('products'));
     }
 }

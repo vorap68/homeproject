@@ -58,19 +58,59 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item">
+                            <a href="{{ url('admin/main') }}" class="nav-link">
+                                <p>
+                                    Main
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link active ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Категории
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.category.index') }}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Все категории</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.category.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Добавить категорию</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link active ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Товары
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.product.index') }}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Все товары</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.product.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Добавить товар</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -99,7 +139,6 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <div class="content-header">

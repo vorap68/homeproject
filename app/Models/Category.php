@@ -14,11 +14,19 @@ class Category extends Model
     ];
 
     /**
-     * Возвращает коллекцию категорий ,вложеных в текущую
+     * Возвращает коллекцию категорий , вложеных в текущую те детей
      */
     public function childrenCategories()
     {
         return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    /**
+     * Возвращает родителя текущей категории
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     /**
@@ -29,13 +37,4 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    /**
-     * Возвращает название категории-родителя  для текущей категории
-     */
-    public function getParent($id)
-    {
-        $category = Category::find($id);
-        $categoryParent = Category::find($category->parent_id);
-        return $categoryParent->name;
-    }
 }
