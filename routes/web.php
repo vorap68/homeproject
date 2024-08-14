@@ -55,5 +55,11 @@ Route::name('admin.')->prefix('/admin')->middleware('auth', 'is_admin')->group(f
     });
     Route::resource('/category', App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('/product', App\Http\Controllers\Admin\ProductController::class);
+    Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'allOrders'])->name('order.all');
+    Route::get('/order/{order}', [App\Http\Controllers\Admin\OrderController::class, 'single'])->name('order.single');
+    Route::delete('/order{order}', [App\Http\Controllers\Admin\OrderController::class, 'destroy'])->name('order.destroy');
+    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'allUsers'])->name('user.all');
+    Route::get('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'ordersForUser'])->name('user.order');
+    Route::delete('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
 
 });

@@ -18,6 +18,7 @@
             <p><span class="border border-3 px-2 bg-white">{{ $product->category->name }}</span></p>
 
         </div>
+
         <div class="mb-3">
             <label for="description" class="form-label">Описание</label>
             <textarea class="form-control" id="description" name="description">
