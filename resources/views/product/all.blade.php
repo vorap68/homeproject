@@ -9,7 +9,7 @@
             @csrf
             <div class="d-flex">
                 <div class="form-group mb-3 me-3">
-                    <label class="form-label">Выбор категории</label><br>
+                    <label class="form-label">Категория</label><br>
                     {{-- <select name="categories[]" multiple="multiple" size="7" class="form-control"> --}}
                     <select name="categories[]" class="form-select" multiple size="1">
                         @foreach ($categories as $category)
@@ -26,7 +26,7 @@
                     <input type="text" class="form-control" id="price_to" name="price_to" value="10000">
                 </div>
                 <div class="d-flex align-items-end mb-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Найти</button>
                 </div>
             </div>
         </form>

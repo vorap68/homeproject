@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')
-    страница main
+    <h1 class="m-5">Cтраница main</h1>
 @endsection

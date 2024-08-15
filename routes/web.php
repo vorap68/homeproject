@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,15 +14,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-
-/**
- * обнуление сессии
- */
-Route::get('session/clear', function () {
-    //session()->flush();
-    session()->forget('order_id');
-    return redirect()->route('index');
-})->name('session.clear');
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
@@ -63,3 +55,22 @@ Route::name('admin.')->prefix('/admin')->middleware('auth', 'is_admin')->group(f
     Route::delete('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
 
 });
+
+/**
+ * обнуление сессии
+ */
+Route::get('session/clear', function () {
+    //session()->flush();
+    session()->forget('order_id');
+    return redirect()->route('index');
+})->name('session.clear');
+
+/**
+ * сброс базы данных
+ */
+Route::get('base/clear', function () {
+    Artisan::call('migrate:fresh', [
+        '--seed' => true,
+    ]);
+    return redirect()->route('index');
+})->name('base.clear');

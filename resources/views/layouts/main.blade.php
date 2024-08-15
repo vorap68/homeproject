@@ -32,9 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">Main</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('session.clear') }}">Обнуление сессии</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('products') }}">Все товары</a>
                         </li>
@@ -68,8 +66,16 @@
                     <p></p>
                     @if (Auth::check())
                         @if (Auth::user()->role === 'admin')
-                            <li style="list-style-type: none;" class="mx-5">
+                            <li style="list-style-type: none;" class="mx-3">
                                 <a class="nav-link" href="{{ url('admin/main') }}"> АдминПанель</a>
+                            </li>
+                            <li style="list-style-type: none;" class="mx-3">
+                                <a class="nav-link" href="{{ route('session.clear') }}">Обнуление сессии заказа</a>
+                            </li>
+                            <li style="list-style-type: none;"
+                                class="mx-53>
+                                <a class="nav-link"
+                                href="{{ route('base.clear') }}">Сброс всей базы данных</a>
                             </li>
                         @endif
                     @endif
