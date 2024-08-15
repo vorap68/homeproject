@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 
 @section('title', 'все заказы')
+@section('page', 'Все заказы ')
 
 @section('content')
 
-
-
+    @if (isset($user))
+        <div>Пользователя: {{ $user->name }}</div>
+    @endif
     <table class="table">
         <thead>
             <tr>

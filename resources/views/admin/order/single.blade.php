@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Продукты заказа')
+@section('page', 'Продукты заказа')
 
 @section('content')
 

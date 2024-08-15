@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>AdminPanel</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -141,12 +141,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0">@yield('page')</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v1</li>
+                                <li class="breadcrumb-item"><a href="{{ route('index') }}">Сайт</a></li>
+
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -156,17 +156,7 @@
 
             <!-- Main content -->
             <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0"> @yield('page')</h1>
-                            </div><!-- /.col -->
 
-                        </div><!-- /.row -->
-                    </div><!-- /.container-fluid -->
-                </div>
                 @if (session()->has('success'))
                     <p class="alert alert-success">{{ session()->get('success') }}</p>
                 @endif

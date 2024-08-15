@@ -2,6 +2,7 @@
 
 @section('title', 'Все категории')
 
+@section('page', 'Все категории')
 @section('content')
 
     <table class="table">

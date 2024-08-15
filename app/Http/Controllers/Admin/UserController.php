@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $orders = $user->orders;
         //dd($orders);
-        return view('admin.order.all', compact('orders'));
+        return view('admin.order.all', compact('orders', 'user'));
     }
 
     /**
