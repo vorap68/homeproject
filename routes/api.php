@@ -12,8 +12,14 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Для работы с категориями и товарами аутентиф НЕ нужна
+Route::get('/categories', [App\Http\Controllers\Api\CategoryController::class, 'index']);
+Route::get('/products', [App\Http\Controllers\Api\ProductController::class, 'getAll']);
+Route::post('/products', [App\Http\Controllers\Api\ProductController::class, 'getSelected']);
+Route::get('/product/slug/{slug}', [App\Http\Controllers\Api\ProductController::class, 'slug']);

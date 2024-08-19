@@ -72,10 +72,8 @@
                             <li style="list-style-type: none;" class="mx-3">
                                 <a class="nav-link" href="{{ route('session.clear') }}">Обнуление сессии заказа</a>
                             </li>
-                            <li style="list-style-type: none;"
-                                class="mx-53>
-                                <a class="nav-link"
-                                href="{{ route('base.clear') }}">Сброс всей базы данных</a>
+                            <li style="list-style-type: none;"class="mx-53">
+                                <a class="nav-link" href="{{ route('base.clear') }}">Сброс всей базы данных</a>
                             </li>
                         @endif
                     @endif
