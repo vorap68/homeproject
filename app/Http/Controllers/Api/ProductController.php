@@ -32,9 +32,9 @@ class ProductController extends Controller
 
         $validated = $request->validate(
             [
-                'category' => 'nullable|max:200',
-                'price_from' => 'nullable|numeric',
-                'price_to' => 'nullable|numeric',
+                'category' => 'required|max:200',
+                'price_from' => 'required|numeric',
+                'price_to' => 'required|numeric',
                 'color' => ['nullable', Rule::in(['yellow', 'green', 'red'])],
                 'size' => ['nullable', Rule::in(['small', 'large', 'middle'])],
                 'state' => ['nullable', Rule::in(['new', 'secondHand', 'undefined'])],
@@ -71,10 +71,7 @@ class ProductController extends Controller
      */
     public function slug($slug)
     {
-
         $product = Product::where('slug', $slug)->get();
-        // dd($product);
         return ProductResource::collection($product);
-        return new ProductResource($product);
     }
 }
