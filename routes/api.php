@@ -35,9 +35,11 @@ Route::get('/product/slug/{slug}', [App\Http\Controllers\Api\ProductController::
 // Корзина Заказ
 Route::middleware('check_user_auth')->group(function () {
     Route::get('basket/add/{id}', [App\Http\Controllers\Api\BasketController::class, 'add']);
-
+    Route::get('/orders', [App\Http\Controllers\Api\OrderController::class, 'allOrders']);
     Route::middleware('basket_api_empty')->group(function () {
-        Route::get('basket/minus/{id}', [App\Http\Controllers\Api\BasketController::class, 'minus']);
-        Route::get('basket/show', [App\Http\Controllers\Api\BasketController::class, 'show']);
+        Route::get('/basket/minus/{id}', [App\Http\Controllers\Api\BasketController::class, 'minus']);
+        Route::get('/basket/show', [App\Http\Controllers\Api\BasketController::class, 'show']);
+        Route::post('/order/submit', [App\Http\Controllers\Api\OrderController::class, 'submit']);
+
     });
 });

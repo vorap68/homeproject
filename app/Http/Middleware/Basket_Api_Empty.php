@@ -23,7 +23,13 @@ class Basket_Api_Empty
          */
         if ($request->user()) {
             $userOrder = $request->user()->orders()->where('status', 0)->first();
+            if (!$userOrder) {
+                return response()->json([
+                    'message' => 'Your have not any orders',
+                ]);
+            };
             $userOrderProducts = $userOrder->products()->wherePivot('order_id', $userOrder->id)->get();
+
             if ($userOrderProducts->isNotEmpty()) {
                 return $next($request);
             } else {
@@ -32,8 +38,9 @@ class Basket_Api_Empty
                 ]);
             }
         } else {
-            session()->flash('warning', 'Корзина пустая');
-            return redirect()->route('index');
+            return response()->json([
+                'message' => 'You need login',
+            ]);
         }
     }
 }

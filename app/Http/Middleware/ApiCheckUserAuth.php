@@ -25,10 +25,12 @@ class ApiCheckUserAuth
             $request->setUserResolver(function () use ($user) {
                 return $user;
             });
-            // dd($token);
             return $next($request);
         }
-        return $next($request);
+        return response()->json([
+            'message' => 'You need login',
+        ]);
+        //return $next($request);
 
     }
 }

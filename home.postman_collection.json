@@ -8,6 +8,185 @@
 	},
 	"item": [
 		{
+			"name": "Order_With_Auth",
+			"item": [
+				{
+					"name": "Add_Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/basket/add/8",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"add",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove_Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/basket/minus/7",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"minus",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShowBasket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/basket/show/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"basket",
+								"show",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SubmitOrder",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\":\"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/order/submit/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"submit",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AllOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/orders/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "AllCategories",
 			"request": {
 				"method": "GET",
@@ -29,7 +208,17 @@
 			"name": "AllProducts",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/products",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
@@ -40,7 +229,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"category\":{\r\n        \"0\":\"category3\",\r\n         \"1\":\"category7\"\r\n       },\r\n    \"price_from\":\"0\",\r\n    \"price_to\":\"400\",\r\n   \r\n    \"size\":\"middle\",\r\n    \"state\":\"secondHand\"\r\n}",
+					"raw": "{\r\n    \"category\":{\r\n        \"0\":\"category3\",\r\n        \"1\":\"category8\",\r\n         \"2\":\"category9\"\r\n       },\r\n    \"price_from\":\"0\",\r\n    \"price_to\":\"400\",\r\n   \r\n    \"size\":\"middle\",\r\n    \"state\":\"secondHand\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -75,6 +264,129 @@
 						"product",
 						"slug",
 						"summer-gaylord"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"asd\",\r\n    \"email\":\"asd@org.com\",\r\n    \"password\":\"asdasdasd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/register",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"qwe@org.com\",\r\n    \"password\":\"qweqweqwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logOut",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set('bearToken',\"\");\r",
+							"var testtoken = pm.environment.get('bearToken');\r",
+							"console.log(testtoken);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/logout",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"logout"
 					]
 				}
 			},

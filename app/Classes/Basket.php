@@ -60,6 +60,7 @@ class Basket
                     'category_id' => $product->category->id,
                     'price' => $product->price,
                 ]);
+            return true;
         }
 
     }
