@@ -25,9 +25,7 @@ class CategoryController extends Controller
             $CategoryAllStructure[$item['parent_id']][$item['id']] = $item;
         }
         $CategoryParents = $CategoryAllStructure[0];
-
         $treeMass = $this->getTree($CategoryParents, $CategoryAllStructure);
-        // $this->printArr($treeMass);
         return json_encode($treeMass, JSON_FORCE_OBJECT);
     }
 

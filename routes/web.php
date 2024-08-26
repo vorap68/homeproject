@@ -29,7 +29,7 @@ Route::post('/products', [App\Http\Controllers\Web\ProductController::class, 'pr
  * Маршруты для корзины-заказа
  */
 Route::get('/basket/add/{product}', [App\Http\Controllers\Web\BasketController::class, 'add'])->name('basket.add');
-Route::middleware('is_basket_empty_web')->group(function () {
+Route::middleware('basket_web_empty')->group(function () {
     Route::get('/basket/show', [App\Http\Controllers\Web\BasketController::class, 'showBasket'])->name('basket.show');
     Route::get('/basket/minus/{product}', [App\Http\Controllers\Web\BasketController::class, 'minus'])->name('basket.minus');
     Route::get('/basket/remove/{product}', [App\Http\Controllers\Web\BasketController::class, 'remove'])->name('basket.remove');
@@ -60,20 +60,10 @@ Route::name('admin.')->prefix('/admin')->middleware('auth', 'is_admin')->group(f
  * обнуление сессии
  */
 Route::get('session/clear', function () {
-    function test(&$a)
-    {
-        $a[2] = 200;
-        // $a->name = 'vova';
-    }
-    $a = [1, 2, 3, 4, 5];
-    // $a = new stdClass();
-    // $a->name = 'dima';
 
-    test($a);
-    var_dump($a);
-    //session()->flush();
-    // session()->forget('order_id');
-    // return redirect()->route('index');
+    session()->flush();
+    session()->forget('order_id');
+    return redirect()->route('index');
 })->name('session.clear');
 
 /**

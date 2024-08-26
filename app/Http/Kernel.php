@@ -63,7 +63,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'is_basket_empty_web' => \App\Http\Middleware\Is_basket_empty_web::class,
+        'basket_web_empty' => \App\Http\Middleware\Basket_Web_Empty::class,
         'is_admin' => \App\Http\Middleware\Is_Admin_Web::class,
+        'check_user_auth' => \App\Http\Middleware\ApiCheckUserAuth::class,
+        'basket_api_empty' => \App\Http\Middleware\Basket_Api_Empty::class,
+
     ];
 }
