@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
+    /**
+     * Метод создания пользователя
+     */
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -22,6 +26,10 @@ class AuthController extends Controller
         return response()->json($user);
     }
 
+    /**
+     * Метод аутентификации пользователя
+     * дополнен созданием токена пользователя  в таблице personal_access_tokens
+     */
     public function login(Request $request)
     {
         $validated = $request->validate([
@@ -42,10 +50,12 @@ class AuthController extends Controller
         );
     }
 
+    /**
+     * Метод дополнен удалением токена пользователя  из таблицы personal_access_tokens
+     */
     public function logout()
     {
         $user = Auth::user();
-        // dd($user->currentAccessToken());
         if ($user->currentAccessToken()->delete()) {
             return response()->json([
                 'message' => 'You logOut succesfully'],

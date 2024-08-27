@@ -18,7 +18,7 @@ class BasketController extends Controller
      */
     public function add(Request $request, Product $product)
     {
-        $basket = new Basket(null);
+        $basket = new Basket(null, null);
         $success = $basket->add($product);
         return redirect()->back();
     }
@@ -30,7 +30,7 @@ class BasketController extends Controller
      */
     public function minus(Product $product)
     {
-        $basket = new Basket(null);
+        $basket = new Basket(null, null);
         $basket->minus($product);
         return redirect()->back();
     }

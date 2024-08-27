@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,16 +19,28 @@ class OrderController extends Controller
     {
         $validated = $request->validate([
             'phone' => 'required|numeric',
+            'email' => 'nullable|email',
         ]);
-        $user = Auth::guard('sanctum')->user();
-        $order = $user->orders()->where('status', 0)->first();
-        $fullSumm = $order->getFullSumm($order);
-        $success = $order->update([
-            'email' => $user->email,
-            'phone' => $validated['phone'],
-            'summa' => $fullSumm,
-            'status' => 1,
-        ]);
+        if ($request->user()) {
+            $user = $request->user();
+            $order = Order::where([
+                'user_id' => $user->id,
+                'status' => 0,
+            ])->firstOrFail();
+            $order->email = $user->email;
+            $order->phone = $validated['phone'];
+            $order->summa = $order->getFullSumm($order);
+            $order->status = 1;
+            $success = $order->save();
+        } else {
+            $api_id = $request->header('X-Session-Id');
+            $order = Order::where('api_id', $api_id)->first();
+            $order->email = $validated['email'];
+            $order->phone = $validated['phone'];
+            $order->summa = $order->getFullSumm($order);
+            $order->status = 1;
+            $success = $order->save();
+        }
         if ($success) {
             return response()->json([
                 'message' => 'Order confirmed',
@@ -37,6 +50,7 @@ class OrderController extends Controller
                 'message' => 'Order Not confirmed',
             ], 400);
         }
+
     }
 
     /**

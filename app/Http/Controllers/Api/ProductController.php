@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -73,5 +74,35 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->get();
         return ProductResource::collection($product);
+    }
+
+    /**
+     * Метод меняет свойства товара (добавляет, удаляет)
+     * @var $property object наброр свойств для переданого продукта
+     */
+    public function changeProperty(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|numeric',
+            'color' => 'nullable|string',
+            'size' => 'nullable|string',
+            'state' => 'nullable|string',
+        ]);
+        $property = Property::where('product_id', $validated['product_id'])->firstOrFail();
+        $success = $property->update([
+            'color' => $validated['color'],
+            'size' => $validated['size'],
+            'state' => $validated['state'],
+        ]);
+
+        if ($success) {
+            return response()->json([
+                'message' => 'properties were updated ',
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'properties were NOT updated ',
+            ]);
+        }
     }
 }

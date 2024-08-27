@@ -12,13 +12,18 @@ class Basket
     protected $order;
 
     /**
+     * Задача конструктора  вернуть  объект заказа $this->order:
+     *  - получить из таблицы orders , если пользователь уже добавлял продукты
+     *  - создать новый в таблице orders , сохранив параметры пользователя
      * @var $user_id int индификатор пользователя , если польз авторизовался
      * @var $order_id int маркер сессии для неавторизированого польз
      */
-    public function __construct($user)
+    public function __construct($user, $api_id)
     {
         if (!is_null($user)) {
             $this->order = Order::where('status', 0)->firstOrCreate(['user_id' => $user->id]);
+        } elseif (!is_null($api_id)) {
+            $this->order = Order::where('status', 0)->firstOrCreate(['api_id' => $api_id]);
         } else {
             $user_id = Auth::check() ? Auth::user()->id : null;
             $order_id = session('order_id');
@@ -37,8 +42,8 @@ class Basket
      * Добавляет единицу товара в корзину
      *
      * @param object $product товар-добавляемый в корзину
-     * @var int $countCurrent количество данного товара $product  в pivot таблице order_product перед добавлением
-     *  @var int $countCurrentNew количество данного товара $product  в pivot таблице order_product после добавления
+     * @var int $countCurrent количество данного товара $product в pivot таблице order_product перед добавлением
+     * @var int $countCurrentNew количество данного товара $product в pivot таблице order_product после добавления
      */
     public function add(Product $product)
     {
