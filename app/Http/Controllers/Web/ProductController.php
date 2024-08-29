@@ -35,13 +35,20 @@ class ProductController extends Controller
 
     /**
      * Возвращает коллекцию  продуктов c учетом критериев выбора
-     * @var @categoryArray array массив выбранных категорий или [1] если категории не выбрали
+     * @var @categoryArray array массив выбранных категорий , если категория не выбрана,
+     *  то категории в выборки продуктов не учавствуют (метод Product::when())
+     *
      */
     public function productSearch(Request $request)
     {
-        $categoryArray = (!isset($request->categories) ? [1] : $request->categories);
-        $productSelected = Product::whereIn('category_id', $categoryArray)->
-            whereBetween('price', [$request->price_from, $request->price_to])->get();
+        $categoryArray = $request->categories;
+        $productSelected = Product::when($categoryArray, function ($query, $categoryArray) use ($request) {
+            return $query = Product::whereIn('category_id', $categoryArray)->
+                whereBetween('price', [$request->price_from, $request->price_to])->get();
+        }, function ($query) use ($request) {
+            return $query = Product::whereBetween('price', [$request->price_from, $request->price_to])
+                ->get();
+        });
         return view('product.selected', compact('productSelected'));
 
     }

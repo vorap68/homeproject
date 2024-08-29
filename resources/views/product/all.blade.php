@@ -11,7 +11,7 @@
                 <div class="form-group mb-3 me-3">
                     <label class="form-label">Категория</label><br>
                     {{-- <select name="categories[]" multiple="multiple" size="7" class="form-control"> --}}
-                    <select name="categories[]" class="form-select" multiple size="1">
+                    <select name="categories[]" class="form-select" multiple size="1" style="width:auto">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach

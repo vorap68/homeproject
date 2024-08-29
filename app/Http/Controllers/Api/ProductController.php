@@ -43,12 +43,12 @@ class ProductController extends Controller
         );
 
         /**
-         * @var $category_id массив состоящий из id выбраных категорий
+         * @var $category_id массив категорий состоящий из id выбраных категорий
          */
         $category_id = Category::whereIn('name', $validated['category'])->pluck('id')->toArray();
 
         /**
-         * @var $properties массив product_id отвечающий условиям выборки свойств продукта
+         * @var $properties массив product_id из таблицы свойств,  отвечающий условиям выборки свойств продукта
          */
         $properties = DB::table('properties')->
             where('color', isset($validated['color']) ? $validated['color'] : DB::raw('color'))->
@@ -57,7 +57,7 @@ class ProductController extends Controller
             pluck('product_id')->toArray();
 
         /**
-         * @var $products массив состоящий из id выбраных продуктов
+         * @var $products ококнчательный массив состоящий из id выбраных продуктов
          */
         $products = Product::whereIn('category_id', $category_id)->
             whereBetween('price', [$validated['price_from'], $validated['price_to']])->
