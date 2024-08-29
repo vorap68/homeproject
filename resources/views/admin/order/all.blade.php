@@ -15,6 +15,7 @@
                 <th scope="col">email</th>
                 <th scope="col">phone</th>
                 <th scope="col">Сумма</th>
+                <th scope="col">Дата заказа</th>
                 <th scope="col">Статус заказа</th>
                 <th></th>
 
@@ -27,6 +28,7 @@
                     <td>{{ $order->email }}</td>
                     <td>{{ $order->phone }}</td>
                     <td>{{ $order->summa }}</td>
+                    <td>{{ $order->created_at->format('d/m/Y') }}</td>
                     <td>{{ $order->status }}</td>
                     <td class="project-actions text-right">
                         <a href="{{ route('admin.order.single', $order->id) }}">Продукты заказа</a>

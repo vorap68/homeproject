@@ -68,6 +68,7 @@ class OrderController extends Controller
         $count = $user->orders->count();
         foreach ($orders as $order) {
             $fullSumm = $order->getFullSumm($order);
+            $dateOrder = $order->created_at->format('d/m/Y');
             $orderProducts = $order->products;
             $transformOrder[] = $orderProducts->map(function ($orderProducts) {
                 return [
