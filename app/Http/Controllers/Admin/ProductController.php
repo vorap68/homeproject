@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -37,19 +39,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $request['slug'] = Str::slug($request->name);
-        $validated = $request->validate([
-            'name' => 'required|max:50',
-            'descriptions' => 'nullable',
-            'slug' => 'required|max:200',
-            'count' => 'required|numeric',
-            'price' => 'required|numeric',
-            'category_id' => 'required|numeric',
-
+        $product_id = Product::create($request->all())->id;
+        $success = DB::table('properties')->insert([
+            'product_id' => $product_id,
+            'color' => $request['color'],
+            'size' => $request['size'],
+            'state' => $request['state'],
         ]);
-        $success = Product::create($validated);
         if ($success) {
             session()->flash('success', 'Новый продукт создан');
         } else {
@@ -87,21 +86,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $request['slug'] = Str::slug($request->name);
-        $validated = $request->validate([
-            'name' => 'required|max:50',
-            'descriptions' => 'nullable',
-            'slug' => 'required|max:200',
-            'count' => 'required|numeric',
-            'price' => 'required|numeric',
-            'category_id' => 'required|numeric',
-
+        $product->update($request->all());
+        $successProduct = $product->save();
+        $successProperty = DB::table('properties')->update([
+            'product_id' => $product->id,
+            'color' => $request['color'],
+            'size' => $request['size'],
+            'state' => $request['state'],
         ]);
-        $product->update($validated);
-        $success = $product->save();
-        if ($success) {
+        if ($successProduct && $successProperty) {
             session()->flash('success', 'Продукт отредактирован');
         } else {
             session()->flash('warning', 'Продукт отредактировать не удалось');

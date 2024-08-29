@@ -39,6 +39,25 @@
 
         </div>
         <div class="mb-3">
+            <label for="color" class="form-label"> цвет</label>
+            <input type="text" class="form-control" id="color" name="color"
+                value="{{ old('color', isset($product->property->color) ? $product->property->color : '') }}">
+
+        </div>
+        <div class="mb-3">
+            <label for="size" class="form-label"> размер</label>
+            <input type="text" class="form-control" id="size" name="size"
+                value="{{ old('color', isset($product->property->size) ? $product->property->size : '') }}">
+
+        </div>
+        <div class="mb-3">
+            <label for="state" class="form-label"> состояние</label>
+            <input type="text" class="form-control" id="state" name="state"
+                value="{{ old('color', isset($product->property->state) ? $product->property->state : '') }}">
+
+
+        </div>
+        <div class="mb-3">
             <select name="category_id" id="category_id">
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>

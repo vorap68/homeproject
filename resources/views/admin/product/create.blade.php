@@ -12,8 +12,8 @@
 
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label">Описание</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
+            <label for="descriptions" class="form-label">Описание</label>
+            <textarea class="form-control" id="descriptions" name="descriptions"></textarea>
 
         </div>
         <div class="mb-3">
@@ -24,6 +24,21 @@
         <div class="mb-3">
             <label for="price" class="form-label"> Цена</label>
             <input type="text" class="form-control" id="price" name="price">
+
+        </div>
+        <div class="mb-3">
+            <label for="color" class="form-label"> цвет</label>
+            <input type="text" class="form-control" id="color" name="color">
+
+        </div>
+        <div class="mb-3">
+            <label for="size" class="form-label"> размер</label>
+            <input type="text" class="form-control" id="size" name="size">
+
+        </div>
+        <div class="mb-3">
+            <label for="state" class="form-label"> состояние</label>
+            <input type="text" class="form-control" id="state" name="state">
 
         </div>
         <div class="mb-3">
