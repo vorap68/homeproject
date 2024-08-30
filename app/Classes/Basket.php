@@ -80,7 +80,7 @@ class Basket
     {
         if ($this->order->products->contains($product)) {
             $countCurrent = $this->order->products()->find($product->id)->pivot->count;
-            if ($countCurrent > 2) {
+            if ($countCurrent >= 2) {
                 $this->order->products()->updateExistingPivot($product->id, [
                     'count' => ($countCurrent - 1),
                 ]);
