@@ -39,21 +39,29 @@
 
         </div>
         <div class="mb-3">
-            <label for="color" class="form-label"> цвет</label>
-            <input type="text" class="form-control" id="color" name="color"
-                value="{{ old('color', isset($product->property->color) ? $product->property->color : '') }}">
+            <label for="color" class="form-label"> цвет: <span>({{ $product->property->color }})</span></label>
+            <select class="form-control" id="color" name="color">
+                <option value="red">red</option>
+                <option value="green">green</option>
+                <option value="yellow">yellow</option>
+            </select>
 
         </div>
         <div class="mb-3">
-            <label for="size" class="form-label"> размер</label>
-            <input type="text" class="form-control" id="size" name="size"
-                value="{{ old('color', isset($product->property->size) ? $product->property->size : '') }}">
+            <label for="size" class="form-label"> размер: <span>({{ $product->property->size }})</label>
+            <select class="form-control" id="size" name="size">
+                <option value="small">small</option>
+                <option value="middle">middle</option>
+                <option value="large">large</option>
+            </select>
 
         </div>
         <div class="mb-3">
-            <label for="state" class="form-label"> состояние</label>
-            <input type="text" class="form-control" id="state" name="state"
-                value="{{ old('color', isset($product->property->state) ? $product->property->state : '') }}">
+            <label for="state" class="form-label"> состояние: <span>({{ $product->property->state }})</label>
+            <select class="form-control" id="state" name="state">
+                <option value="new">new</option>
+                <option value="secondHand">secondHand</option>
+            </select>
 
 
         </div>

@@ -24,6 +24,7 @@ class ProductFactory extends Factory
             'price' => rand(10, 100),
             'count' => rand(5, 50),
             'category_id' => $category->id,
+            'image' => '/home.jpg',
 
         ];
     }

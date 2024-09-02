@@ -17,6 +17,7 @@ class ProductController extends Controller
     public function productSingle(Product $product)
     {
         $property = $product->property;
+        // dd($product);
         return view('product.single', ([
             'product' => $product,
             'property' => $property,
