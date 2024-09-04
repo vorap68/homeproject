@@ -22,9 +22,7 @@ class OrderController extends Controller
      */
     public function single(Order $order)
     {
-        //dd($order);
         $products = $order->products;
-        //dd($products);
         return view('admin.order.single', compact('products'));
     }
 

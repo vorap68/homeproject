@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <form action="{{ route('admin.product.store') }}" method="post" class="w-50">
+    <form action="{{ route('admin.product.store') }}" method="post" class="w-50" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Название </label>
@@ -63,7 +63,10 @@
             </select>
 
         </div>
-
+        <div class="mb-3">
+            <label for="picture" class="form-label"> Изображение</label>
+            <input type="file" name="picture" id="picture">
+        </div>
         <button type="submit" class="btn btn-primary">Создать</button>
     </form>
 

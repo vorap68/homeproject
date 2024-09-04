@@ -36,7 +36,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|unique:categories|max:50',
             'parent_id' => 'nullable|integer',
@@ -89,7 +88,6 @@ class CategoryController extends Controller
             'name' => 'required|max:50',
             'parent_id' => 'nullable|integer',
         ]);
-        //dd($validated, $request->all());
         $success = $category->update(
             ['name' => $validated['name'],
                 'parent_id' => $validated['parent_id'],

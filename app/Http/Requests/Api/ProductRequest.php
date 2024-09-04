@@ -34,6 +34,7 @@ class ProductRequest extends FormRequest
             'size' => ['nullable', Rule::in(['small', 'large', 'middle'])],
             'state' => ['nullable', Rule::in(['new', 'secondHand', 'undefined'])],
             'category_id' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

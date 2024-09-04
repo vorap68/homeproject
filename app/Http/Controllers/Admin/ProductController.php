@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\ImageSaver;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductRequest;
 use App\Models\Product;
@@ -11,6 +12,13 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+
+    protected $imageSaver;
+
+    public function __construct()
+    {
+        $this->imageSaver = new ImageSaver();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -41,6 +49,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        if ($request->picture) {
+            $request['image'] = $this->imageSaver->upload($request);
+        }
         $request['slug'] = Str::slug($request->name);
         $product_id = Product::create($request->all())->id;
         $success = DB::table('properties')->insert([
@@ -49,7 +60,7 @@ class ProductController extends Controller
             'size' => $request['size'],
             'state' => $request['state'],
         ]);
-        if ($success) {
+        if ($success && $product_id) {
             session()->flash('success', 'Новый продукт создан');
         } else {
             session()->flash('warning', 'Продукт создать не удалось');
