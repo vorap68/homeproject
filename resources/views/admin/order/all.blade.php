@@ -29,7 +29,7 @@
                     <td>{{ $order->phone }}</td>
                     <td>{{ $order->summa }}</td>
                     <td>{{ $order->created_at->format('d/m/Y') }}</td>
-                    <td>{{ $order->status }}</td>
+                    <td>{{ $order->status == 1 ? 'Отправлен' : 'НЕ отправлен' }}</td>
                     <td class="project-actions text-right">
                         <a href="{{ route('admin.order.single', $order->id) }}">Продукты заказа</a>
 
