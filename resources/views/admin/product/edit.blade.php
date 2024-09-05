@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <form action="{{ route('admin.product.update', $product) }}" method="post" class="w-50">
+    <form action="{{ route('admin.product.update', $product) }}" method="post" class="w-50" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -13,11 +13,7 @@
                 value="{{ old('name', isset($product->name) ? $product->name : '') }}">
 
         </div>
-        <div class="mb-3">
-            <span class="form-label ">Категория:</span>
-            <p><span class="border border-3 px-2 bg-white">{{ $product->category->name }}</span></p>
 
-        </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Описание</label>
@@ -66,6 +62,7 @@
 
         </div>
         <div class="mb-3">
+            <label for="category_id" class="form-label"> Категория:<span>({{ $product->category->name }})</label>
             <select name="category_id" id="category_id">
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -73,8 +70,24 @@
             </select>
 
         </div>
+        <div class="mb-3">
+            <label for="picture" class="form-label"> Изображение</label>
+            <input type="file" name="picture" id="picture">
+        </div>
 
-        <button type="submit" class="btn btn-primary">Редактировать</button>
+        @isset($product->image)
+            <div class="border border-secondary">
+                <img src="{{ asset('storage/images/' . $product->category->name . '/150_' . $product->image) }}" width="150"
+                    height="150" alt="..." class="border border-secondary">
+                <div class="form-group form-check">
+                    <input type="checkbox" name="remove" id="remove" class="form-check-input">
+                    <label class="form-check-label" for="remove">Удалить загруженое изображение</label>
+                </div>
+            </div>
+        @endisset
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Редактировать</button>
+        </div>
     </form>
 
     @if ($errors->any())

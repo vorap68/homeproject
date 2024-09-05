@@ -99,15 +99,23 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        if ($request->remove) {
+            $removed = $this->imageSaver->remove($product);
+            $request['image'] = null;
+        }
+        if ($request->picture) {
+            $request['image'] = $this->imageSaver->upload($request);
+        }
         $request['slug'] = Str::slug($request->name);
         $product->update($request->all());
         $successProduct = $product->save();
-        $successProperty = DB::table('properties')->where('product_id', $product->id)->update([
+        dump($successProduct);
+        DB::table('properties')->where('product_id', $product->id)->update([
             'color' => $request['color'],
             'size' => $request['size'],
             'state' => $request['state'],
         ]);
-        if ($successProduct && $successProperty) {
+        if ($successProduct) {
             session()->flash('success', 'Продукт отредактирован');
         } else {
             session()->flash('warning', 'Продукт отредактировать не удалось');

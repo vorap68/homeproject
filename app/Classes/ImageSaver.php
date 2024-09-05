@@ -4,12 +4,10 @@ namespace App\Classes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
-//use Intervention\Image\Facades\Image;
-
-//use Intervention\Image\Image;
 
 class ImageSaver extends Controller
 {
@@ -39,6 +37,20 @@ class ImageSaver extends Controller
         } else {
             session()->flash('warning', 'Изображение не сохранилось');
             return route('admin.product.store');
+        }
+    }
+
+    public function remove(Product $product)
+    {
+        $path = 'images/' . $product->category->name;
+        $fileName = $product->image;
+        $success150 = Storage::delete($path . '/150_' . $fileName);
+        $success600 = Storage::delete($path . '/600_' . $fileName);
+        if ($success150 && $success600) {
+            return true;
+        } else {
+            session()->flash('warning', 'Изображение не удалено');
+            return route('admin.product.update');
         }
     }
 }
