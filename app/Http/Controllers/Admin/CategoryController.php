@@ -84,22 +84,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:50',
-            'parent_id' => 'nullable|integer',
-        ]);
-        $success = $category->update(
-            ['name' => $validated['name'],
-                'parent_id' => $validated['parent_id'],
-            ]
-        );
-        if ($success) {
-            session()->flash('success', 'Новая категория изменна');
+        if ($category->products->isNotEmpty()) {
+            session()->flash('warning', 'Категорию содержит продукты, редактирование не удалось');
+            return redirect()->route('admin.category.index');
         } else {
-            session()->flash('warning', 'Категорию изменить не удалось');
+            $validated = $request->validate([
+                'name' => 'required|max:50',
+                'parent_id' => 'nullable|integer',
+            ]);
+            $success = $category->update(
+                ['name' => $validated['name'],
+                    'parent_id' => $validated['parent_id'],
+                ]
+            );
+            if ($success) {
+                session()->flash('success', 'Новая категория изменна');
+            } else {
+                session()->flash('warning', 'Категорию изменить не удалось');
+            }
+            return redirect()->route('admin.category.index');
         }
-        return redirect()->back();
-
     }
 
     /**
@@ -110,7 +114,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        {
+        if ($category->products->isNotEmpty()) {
+            session()->flash('warning', 'Категорию содержит продукты, удалить не удалось');
+            return redirect()->route('admin.category.index');
+        } else {
             $success = $category->delete();
             if ($success) {
                 session()->flash('success', 'категория удалена');
