@@ -102,8 +102,7 @@ class ProductController extends Controller
         $request['slug'] = Str::slug($request->name);
         $product->update($request->all());
         $successProduct = $product->save();
-        $successProperty = DB::table('properties')->update([
-            'product_id' => $product->id,
+        $successProperty = DB::table('properties')->where('product_id', $product->id)->update([
             'color' => $request['color'],
             'size' => $request['size'],
             'state' => $request['state'],
