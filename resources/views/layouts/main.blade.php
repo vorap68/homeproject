@@ -67,6 +67,9 @@
                     @if (Auth::check())
                         @if (Auth::user()->role === 'admin')
                             <li style="list-style-type: none;" class="mx-3">
+                                <a class="nav-link" href="{{ url('phpinfo') }}"> phpinfo</a>
+                            </li>
+                            <li style="list-style-type: none;" class="mx-3">
                                 <a class="nav-link" href="{{ url('admin/main') }}"> АдминПанель</a>
                             </li>
                             <li style="list-style-type: none;" class="mx-3">

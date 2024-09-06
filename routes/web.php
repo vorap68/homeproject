@@ -75,3 +75,11 @@ Route::get('base/clear', function () {
     ]);
     return redirect()->route('index');
 })->name('base.clear');
+
+/**
+ * phpinfo()
+ */
+Route::get('phpinfo', function () {
+    phpinfo();
+    var_dump(gd_info());
+});

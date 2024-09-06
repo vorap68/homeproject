@@ -26,6 +26,7 @@ class ImageSaver extends Controller
             $checked->aspectRatio();
             $checked->upsize();
         });
+
         $path = storage_path('app/public/images/' . $category_name);
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -33,6 +34,7 @@ class ImageSaver extends Controller
         $success600 = $image600->save($path . '/600_' . $fileName);
         $success150 = $image150->save($path . '/150_' . $fileName);
         if ($success150 && $success600) {
+
             return $fileName;
         } else {
             session()->flash('warning', 'Изображение не сохранилось');

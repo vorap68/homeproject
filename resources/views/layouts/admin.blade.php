@@ -47,6 +47,10 @@
                 <span class="brand-text font-weight-light">AdminPanel</span>
             </a>
 
+            <a href="#" class="brand-link">
+
+                <span class="brand-text font-weight-light">AdminPanel</span>
+            </a>
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
