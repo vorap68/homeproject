@@ -34,7 +34,7 @@ Route::middleware('basket_web_empty')->group(function () {
     Route::get('/basket/minus/{product}', [App\Http\Controllers\Web\BasketController::class, 'minus'])->name('basket.minus');
     Route::get('/basket/remove/{product}', [App\Http\Controllers\Web\BasketController::class, 'remove'])->name('basket.remove');
     Route::get('/order/place/{order}', [App\Http\Controllers\Web\OrderController::class, 'place'])->name('order.place');
-    Route::post('/order/confirm/{order}', [App\Http\Controllers\Web\OrderController::class, 'confirm'])->name('order.confirm');
+    Route::match(['post', 'get'], '/order/confirm/{order}', [App\Http\Controllers\Web\OrderController::class, 'confirm'])->name('order.confirm');
 
 });
 
