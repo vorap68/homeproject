@@ -4,11 +4,15 @@
 
 @section('content')
 
+
     <form action="{{ route('admin.product.store') }}" method="post" class="w-50" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Название </label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+            @error('name')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
 
         </div>
         <div class="mb-3">
@@ -18,13 +22,17 @@
         </div>
         <div class="mb-3">
             <label for="count" class="form-label">Количество</label>
-            <input type="number" class="form-control" id="count" name="count">
-
+            <input type="number" class="form-control" id="count" name="count" value="{{ old('count') }}">
+            @error('count')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="price" class="form-label"> Цена</label>
-            <input type="text" class="form-control" id="price" name="price">
-
+            <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}">
+            @error('price')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="color" class="form-label"> цвет</label>
@@ -34,7 +42,9 @@
                 <option value="green">green</option>
                 <option value="yellow">yellow</option>
             </select>
-
+            @error('color')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="size" class="form-label"> размер</label>
@@ -44,7 +54,9 @@
                 <option value="middle">middle</option>
                 <option value="large">large</option>
             </select>
-
+            @error('size')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="state" class="form-label"> состояние</label>
@@ -53,7 +65,9 @@
                 <option value="new">new</option>
                 <option value="secondHand">secondHand</option>
             </select>
-
+            @error('state')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <select name="category_id" id="category_id">
@@ -66,17 +80,12 @@
         <div class="mb-3">
             <label for="picture" class="form-label"> Изображение</label>
             <input type="file" name="picture" id="picture">
+            @error('picture')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Создать</button>
     </form>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 @endsection
