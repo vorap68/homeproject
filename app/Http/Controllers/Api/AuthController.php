@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,7 @@ class AuthController extends Controller
         ]);
         $validated['password'] = Hash::make($validated['password']);
         $user = User::create($validated);
-        return response()->json($user);
+        return response()->json($user, Response::HTTP_CREATED);
     }
 
     /**

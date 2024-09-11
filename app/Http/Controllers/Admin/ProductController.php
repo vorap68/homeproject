@@ -49,11 +49,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+
         if ($request->picture) {
-            $file = $request->file('picture');
-            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'])) {
-                return back()->withErrors(['picture' => 'Загружаемый файл долженбыть изображением']);
-            };
             $request['image'] = $this->imageSaver->upload($request);
         }
         $request['slug'] = Str::slug($request->name);
