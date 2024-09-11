@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "29420146-7a13-425b-94e0-bba40a037974",
-		"name": "home",
+		"_postman_id": "3934b51b-4d9d-4340-9c19-79a109d6dd57",
+		"name": "WAN_home",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25569418",
-		"_collection_link": "https://planetary-flare-47575.postman.co/workspace/sanctum~63879d53-d3aa-4251-beb2-7fb016b8f53d/collection/25569418-29420146-7a13-425b-94e0-bba40a037974?action=share&source=collection_link&creator=25569418"
+		"_collection_link": "https://planetary-flare-47575.postman.co/workspace/sanctum~63879d53-d3aa-4251-beb2-7fb016b8f53d/collection/25569418-3934b51b-4d9d-4340-9c19-79a109d6dd57?action=share&source=collection_link&creator=25569418"
 	},
 	"item": [
 		{
@@ -26,15 +26,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/basket/add/8",
+							"raw": "{{url_wan}}/api/basket/add/23",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
 								"basket",
 								"add",
-								"8"
+								"23"
 							]
 						}
 					},
@@ -86,9 +86,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/basket/show/",
+							"raw": "{{url_wan}}/api/basket/show/",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -141,9 +141,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/order/submit/",
+							"raw": "{{url_wan}}/api/order/submit/",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -171,9 +171,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/orders/",
+							"raw": "{{url_wan}}/api/orders/",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -215,9 +215,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/basket/add/8",
+							"raw": "{{url_wan}}/api/basket/add/8",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -241,9 +241,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/basket/minus/8",
+							"raw": "{{url_wan}}/api/basket/minus/8",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -267,9 +267,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/basket/show/",
+							"raw": "{{url_wan}}/api/basket/show/",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -329,9 +329,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/order/submit/",
+							"raw": "{{url_wan}}/api/order/submit/",
 							"host": [
-								"{{URL}}"
+								"{{url_wan}}"
 							],
 							"path": [
 								"api",
@@ -349,11 +349,17 @@
 			"name": "AllCategories",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "{{URL}}/api/categories",
+					"raw": "{{url_wan}}/api/categories",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
@@ -369,9 +375,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/api/products",
+					"raw": "{{url_wan}}/api/products",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
@@ -388,7 +394,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"category\":{\r\n        \"0\":\"category3\",\r\n        \"1\":\"category8\",\r\n         \"2\":\"category9\"\r\n       },\r\n    \"price_from\":\"0\",\r\n    \"price_to\":\"400\",\r\n   \r\n    \"size\":\"middle\",\r\n    \"state\":\"secondHand\"\r\n}",
+					"raw": "{\r\n    \"category\":{\r\n        \"0\":\"category3\",\r\n        \"1\":\"category8\",\r\n         \"2\":\"category9\"\r\n       },\r\n    \"price_from\":\"0\",\r\n    \"price_to\":\"400\",\r\n   \r\n    \"size\":\"middle\"\r\n   }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -396,9 +402,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{URL}}/api/products",
+					"raw": "{{url_wan}}/api/products",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
@@ -414,15 +420,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/api/product/slug/summer-gaylord",
+					"raw": "{{url_wan}}/api/product/slug/eliezer-brekke",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
 						"product",
 						"slug",
-						"summer-gaylord"
+						"eliezer-brekke"
 					]
 				}
 			},
@@ -451,7 +457,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"asd\",\r\n    \"email\":\"asd@org.com\",\r\n    \"password\":\"asdasdasd\"\r\n}",
+					"raw": "{\r\n    \"name\":\"zxc\",\r\n    \"email\":\"zxc@org.com\",\r\n    \"password\":\"zxczxczxc\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -459,9 +465,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{URL}}/api/register",
+					"raw": "{{url_wan}}/api/register",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
@@ -505,7 +511,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"qwe@org.com\",\r\n    \"password\":\"qweqweqwe\"\r\n}",
+					"raw": "{\r\n    \"email\":\"zxc@org.com\",\r\n    \"password\":\"zxczxczxc\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -513,9 +519,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{URL}}/api/login",
+					"raw": "{{url_wan}}/api/login",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
@@ -555,9 +561,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/api/logout",
+					"raw": "{{url_wan}}/api/logout",
 					"host": [
-						"{{URL}}"
+						"{{url_wan}}"
 					],
 					"path": [
 						"api",
