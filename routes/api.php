@@ -23,7 +23,6 @@ Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
-
 });
 
 // Для работы с категориями и товарами аутентиф НЕ нужна
@@ -41,6 +40,17 @@ Route::middleware('check_user_auth')->group(function () {
         Route::get('/basket/minus/{id}', [App\Http\Controllers\Api\BasketController::class, 'minus']);
         Route::get('/basket/show', [App\Http\Controllers\Api\BasketController::class, 'show']);
         Route::post('/order/submit', [App\Http\Controllers\Api\OrderController::class, 'submit']);
-
     });
+});
+
+/**
+ * маршруты для VueJs
+ */
+
+Route::prefix('/vue')->group(function () {
+    Route::post('store', [App\Http\Controllers\VueJs\ProductController::class, 'store']);
+    Route::get('index', [App\Http\Controllers\VueJs\ProductController::class, 'index']);
+    Route::patch('update/{product}', [App\Http\Controllers\VueJs\ProductController::class, 'update']);
+    Route::delete('delete/{product}', [App\Http\Controllers\VueJs\ProductController::class, 'delete']);
+    Route::get('product/{product}', [App\Http\Controllers\VueJs\ProductController::class, 'show']);
 });

@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
+//Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
+Route::get('/', function () {
+    return view('index');
+})->name('index');
 
 Auth::routes();
 
@@ -35,7 +38,6 @@ Route::middleware('basket_web_empty')->group(function () {
     Route::get('/basket/remove/{product}', [App\Http\Controllers\Web\BasketController::class, 'remove'])->name('basket.remove');
     Route::get('/order/place/{order}', [App\Http\Controllers\Web\OrderController::class, 'place'])->name('order.place');
     Route::match(['post', 'get'], '/order/confirm/{order}', [App\Http\Controllers\Web\OrderController::class, 'confirm'])->name('order.confirm');
-
 });
 
 /**
@@ -46,14 +48,20 @@ Route::name('admin.')->prefix('/admin')->middleware('auth', 'is_admin')->group(f
         return view('admin.main');
     });
     Route::resource('/category', App\Http\Controllers\Admin\CategoryController::class);
-    Route::resource('/product', App\Http\Controllers\Admin\ProductController::class);
+    //Route::resource('/product', App\Http\Controllers\Admin\ProductController::class);
+    Route::get('/product', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/{product}/edit', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
+    Route::delete('/product/{product}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('/product/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
+    Route::put('/product/{product}/update', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product.update');
+    Route::post('/product/store', [App\Http\Controllers\Admin\ProductController::class, 'store'])->name('product.store');
+
     Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'allOrders'])->name('order.all');
     Route::get('/order/{order}', [App\Http\Controllers\Admin\OrderController::class, 'single'])->name('order.single');
     Route::delete('/order{order}', [App\Http\Controllers\Admin\OrderController::class, 'destroy'])->name('order.destroy');
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'allUsers'])->name('user.all');
     Route::get('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'ordersForUser'])->name('user.order');
     Route::delete('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
-
 });
 
 /**
@@ -83,3 +91,14 @@ Route::get('phpinfo', function () {
     phpinfo();
     var_dump(gd_info());
 });
+
+
+/**
+ * SPA
+ */
+Route::prefix('/spa')->group(function () {
+    Route::get('/products', [App\Http\Controllers\Spa\ProductController::class, 'index']);
+});
+Route::get('/spa/{any}', function () {
+    return view('spa'); // Шаблон, где Vue монтируется
+})->where('any', '.*');

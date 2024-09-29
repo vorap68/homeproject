@@ -28,7 +28,6 @@ class ProductController extends Controller
     {
         $products = Product::paginate(10);
         return view('admin.product.all', compact('products'));
-
     }
 
     /**
@@ -121,7 +120,6 @@ class ProductController extends Controller
             session()->flash('warning', 'Продукт отредактировать не удалось');
         }
         return redirect()->route('product', compact('product'));
-
     }
 
     /**
@@ -139,6 +137,5 @@ class ProductController extends Controller
             session()->flash('warning', 'Продукт удалить не удалось');
         }
         return redirect()->route('admin.product.index');
-
     }
 }

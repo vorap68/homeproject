@@ -33,26 +33,12 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div id="app">
         <div class="wrapper">
-
-            <!-- Preloader -->
-            <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                    width="60">
-            </div>
-
-            <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
-                <!-- Brand Logo -->
-
-
 
                 <div class="p-3 mb-2 bg-primary text-white " style="font-size: 18px;">AdminPanel
-
                 </div>
                 <!-- Sidebar -->
                 <div class="sidebar">
-
-
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -64,29 +50,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <a href="#" class="nav-link active ">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Категории
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.category.index') }}" class="nav-link ">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Все категории</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('admin.category.create') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Добавить категорию</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+
                             <li class="nav-item ">
                                 <a href="#" class="nav-link active ">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -110,22 +74,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item ">
-                                <a href="{{ route('admin.order.all') }}" class="nav-link  ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Заказы
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="{{ route('admin.user.all') }}" class="nav-link  ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Пользователи
-                                    </p>
-                                </a>
-                            </li>
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -135,33 +84,16 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0">@yield('page')</h1>
-                            </div><!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="{{ route('index') }}">Сайт</a></li>
-
-                                </ol>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </div><!-- /.container-fluid -->
-                </div>
-                <!-- /.content-header -->
 
                 <!-- Main content -->
                 <div class="content-wrapper">
 
-                    @if (session()->has('success'))
+                    {{-- @if (session()->has('success'))
                         <p class="alert alert-success">{{ session()->get('success') }}</p>
                     @endif
                     @if (session()->has('warning'))
                         <p class="alert alert-warning">{{ session()->get('warning') }}</p>
-                    @endif
+                    @endif --}}
 
 
                     <!-- Main content -->
@@ -180,9 +112,9 @@
         <!-- jQuery UI 1.11.4 -->
         <script src="{{ url('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
+        {{-- <script>
             $.widget.bridge('uibutton', $.ui.button)
-        </script>
+        </script> --}}
         <!-- Bootstrap 4 -->
         <script src="{{ url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- ChartJS -->
